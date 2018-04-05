@@ -1,0 +1,62 @@
+﻿@model ProductoViewModel
+
+
+<h4 class="header">Lista de productos</h4>
+
+<div class="panel panel-default col s12">
+    <div class="panel-heading">Panel de productos</div>
+    <table class="table highlight">
+        <thead>
+            <tr>
+                <th>
+                    Nombre
+                </th>
+                <th>
+                    Descripcion corta
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Id de proveedor
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Productos)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShortDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProveedorId)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProductoId" class="btn-floating btn-small waves-effect waves-light #26a69a"><i class="material-icons">edit</i></a>
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.ProductoId" class="btn-floating btn-small waves-effect waves-light red"><i class="material-icons">delete</i></a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+</div>
+<p>
+    <a asp-action="Create" class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">person_add</i></a>
+</p>

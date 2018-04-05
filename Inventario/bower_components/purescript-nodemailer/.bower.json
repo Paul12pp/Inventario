@@ -1,0 +1,44 @@
+{
+  "name": "purescript-nodemailer",
+  "license": "MIT",
+  "homepage": "https://github.com/oreshinya/purescript-nodemailer",
+  "authors": [
+    "Shinya Takahashi <s.takahashi313@gmail.com>"
+  ],
+  "description": "Bindings nodemailer for PureScript",
+  "keywords": [
+    "purescript",
+    "mailer",
+    "nodemailer"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oreshinya/purescript-nodemailer.git"
+  },
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "output"
+  ],
+  "dependencies": {
+    "purescript-aff": "^4.0.0"
+  },
+  "devDependencies": {
+    "purescript-node-process": "^5.0.0"
+  },
+  "version": "0.1.0",
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.1.0",
+    "commit": "1ae30fa4d9f9d72f3caf390701441ed087e021ce"
+  },
+  "_source": "https://github.com/oreshinya/purescript-nodemailer.git",
+  "_target": "v0.1.0",
+  "_originalSource": "purescript-nodemailer",
+  "_direct": true
+}

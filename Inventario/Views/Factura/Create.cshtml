@@ -1,0 +1,100 @@
+﻿@model Inventario.Controllers.FacturaController
+@using Inventario.Models
+@using Inventario.ViewModels
+<h4 class="header">Facturacion</h4>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="row">
+                <div class="col s4">
+                    <label>Id de Cliente</label>
+                    @Html.DropDownList("ClienteId", new SelectList(ViewBag.ClienteId, "ClienteId", "Name"), "-- Select Cliente --")
+                </div>
+                <div class=" col s4">
+                    <label>Fecha</label>
+                    <input id="Fecha" type="date" class="date-text" />
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+        </form>
+        <form asp-controller="Detalle"
+   asp-action="Create" id="form1">
+
+            <div class="row">
+                <div class="col s3">
+                    <label>Id de Producto</label>
+                    @Html.DropDownList("ProductoId", new SelectList(ViewBag.ProductoId, "ProductoId", "Name"), "Select Producto")
+                </div>
+                <div class=" col s3">
+                    <label>Descripcion</label>
+                    <input id="RDescripcion" value="" type="text" readonly />
+                    <span class="text-danger"></span>
+                </div>
+                <div class=" col s2">
+                    <label>Disponible</label>
+                    <input id="Rdispon" value="" type="text" readonly />
+                    <span class="text-danger"></span>
+                </div>
+                <div class=" col s2">
+                    <label>Precio</label>
+                    <input id="Rprecio" value="" type="number" readonly />
+                    <span class="text-danger"></span>
+                </div>
+                <div class=" col s2">
+                    <label>Cantidad</label>
+                    <input id="RCantidad" value="" type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')" />
+                    <span class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" id="create" />
+                <a asp-action="List" class="btn btn-default">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="panel panel-default col s12 row">
+    <div class="panel-heading">Panel de productos</div>
+    <table class="table highlight" id="mytable">
+        <thead>
+            <tr>
+                <th>
+                    Codigo
+                </th>
+                <th>
+                    Descripcion
+                </th>
+                <th>
+                    Precio
+                </th>
+                <th>
+                    Cantidad
+                </th>
+                <th>
+                    Importe
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
+<div class="row" id="total">
+    <div class="col 2">
+        <p><b>Total: </b></p>
+    </div>
+    <div class="col 2">
+        <p id="Rtotal"></p>
+    </div>
+</div>
+<p>
+    <a href="#" id="adicionar" class="btn btn-default">Colocar</a>
+    <a href="#" id="nuevo" class="btn btn-default">Nuevo</a>
+    <a href="#" id="elim" class="btn btn-default" onclick="generar()">Eliminar</a>
+    <a href="#" id="facturar" onclick="paso1()" class="btn btn-default">Facturar</a>
+</p>
+<p id="rData">
+</p>

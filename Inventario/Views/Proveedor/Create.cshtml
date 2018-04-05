@@ -1,0 +1,56 @@
+﻿@model Proveedor
+
+<h4 class="header">Agregar proveedor</h4>
+<div class="row">
+    <form asp-action="Create" method="post" class="col-s12" role="form" id="formulario">
+        <div class="row">
+            <div class="input-field col s3">
+                <input asp-for="Name" class="validate" />
+                <label asp-for="Name"></label>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="input-field col s3">
+                <input asp-for="LastName" class="validate" />
+                <label asp-for="LastName">Apellido</label>
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input asp-for="IdentificationCard" class="validate" placeholder="Escriba la cedula sin '-'" data-length="12" />
+                <label asp-for="IdentificationCard">Cedula</label>
+                <span asp-validation-for="IdentificationCard" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input asp-for="PhoneNumber" class="validate" />
+                <label asp-for="PhoneNumber">Telefono</label>
+                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="input-field col s6">
+                <input asp-for="Address" class="validate" />
+                <label asp-for="Address">Direccion</label>
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input asp-for="Email" class="validate" />
+                <label asp-for="Email">Email</label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" class="btn btn-primary" value="Agregar proveedor" />
+                <a asp-action="Index" class="nounderline btn btn-primary"> Atras</a>
+            </div>
+        </div>
+    </form>
+    </div>
+
+

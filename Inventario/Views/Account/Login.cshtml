@@ -1,0 +1,52 @@
+﻿@model LoginViewModel
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="~/css/test.css">
+
+</head>
+<body>
+    <div class="body">
+        <h4>Login</h4>
+    </div>
+    <div class="grad"></div>
+    <div class="header">
+        <div>Sistema<span>Facturacion</span></div>
+    </div>
+    <br>
+    <div class="login">
+        <form asp-action="Login" asp-controller="Account" method="post" role="form">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="row">
+                <div class="col s6">
+                    <label asp-for="UserName" class="col-md-2 control-label"></label><br />
+                    <input asp-for="UserName" placeholder="username"><br>
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s6">
+                    <label asp-for="Password" class="col-md-2 control-label"></label><br />
+                    <input asp-for="Password" placeholder="password"><br>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <input type="submit" value="Login"><br />
+              <div class="row">
+                  <label class="col-md-2 control-label">
+                      <a asp-action="Register">Register here</a>
+                  </label><br />
+                
+             </div>
+        </form>
+    </div>
+</body>
+</html>
+
