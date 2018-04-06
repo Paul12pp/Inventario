@@ -490,8 +490,12 @@
 
             );
             let finalY = pdf.autoTable.previous.finalY+10; // The y position on the page
-            pdf.text(155, finalY, "Total: " + total +"")
-            pdf.save('mipdf.pdf');
+            pdf.text(155, finalY, "Total: " + total + "")
+            //Print
+            pdf.autoPrint(); 
+            window.open(pdf.output('bloburl'), '_blank');
+            //Save
+            //pdf.save('mipdf.pdf');
 
         }
 

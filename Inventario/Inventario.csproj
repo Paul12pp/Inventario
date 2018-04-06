@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\lib\materialize\fonts\" />
+    <Folder Include="wwwroot\PDFs\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties bower_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
