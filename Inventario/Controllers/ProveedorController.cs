@@ -181,5 +181,12 @@ namespace Inventario.Controllers
             return View(proveedorViewModel);
         }
 
+        // GET: api/authors
+        [HttpGet]
+        [ActionName("ObtenerProveedor")]
+        public JsonResult Get()
+        {
+            return Json(_proveedorRepository.GetAllProveedores());
+        }
     }
 }

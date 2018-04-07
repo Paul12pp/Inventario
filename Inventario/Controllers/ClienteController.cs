@@ -171,5 +171,13 @@ namespace Inventario.Controllers
                 return RedirectToAction(nameof(Delete), new { id = id, saveChangesError = true });
             }
         }
+
+                // GET: api/authors
+        [HttpGet]
+        [ActionName("ObtenerCliente")]
+        public JsonResult Get()
+        {
+            return Json(_clienteRepository.GetAllClientes());
+        }
     }
 }

@@ -18,11 +18,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
     <script src="~/lib/jquery/src/jspdf.min.js"></script>
     <script src="~/lib/jquery/src/jspdf.plugin.autotable.min.js"></script>
-    <script type="text/javascript">
+
+  <!---- <script type="text/javascript">
         'use strict';
         //mostrar();
         var productos;
@@ -414,10 +418,46 @@
             console.log('paso 4');
             facturar();
         }
-        function paso5() {
+
+        function paso5() { 
             console.log('paso 5');
-            generar();
+            ocultaBtn();
         }
+
+        function ocultaBtn() {
+
+            document.getElementById('adicionar').style.display = 'none';
+            document.getElementById('nuevo').style.display = 'none';
+            document.getElementById('facturar').style.display = 'none';
+            document.getElementById('print').style.display = '';
+            document.getElementById('expdf').style.display = '';
+
+        }
+
+        function muestraBtn() {
+
+            document.getElementById('adicionar').style.display = '';
+            document.getElementById('nuevo').style.display = '';
+            document.getElementById('facturar').style.display = '';
+            document.getElementById('print').style.display = 'none';
+            document.getElementById('expdf').style.display = 'none';
+
+        }
+
+        function limpiaTbl(){
+            var tableHeaderRowCount = 1;
+            var table = document.getElementById('mytable');
+            var rowCount = table.rows.length;
+            for (var i = tableHeaderRowCount; i < rowCount; i++) {
+                table.deleteRow(tableHeaderRowCount);
+            }
+            document.getElementById("Rtotal").innerHTML = "";
+            $('#Rprecio').val("").text();
+            $('#RDescripcion').val('').text();
+            $('#Rdispon').val('').text();
+            $("RCantidad").val('').text();
+        }
+
         function filita2() {
             var tabla2 = document.getElementById("mytable");
             var tdsTabla2 = tabla2.getElementsByTagName("tr");
@@ -468,7 +508,7 @@
             paso5();
         }
 
-        function generar() {
+        function generarDesc() {
             var pdf = new jsPDF();
             pdf.setFontSize(22)
             pdf.text(160, 20, "Factura");
@@ -479,11 +519,6 @@
             pdf.text(15, 50, "Nombre Cliente:  " + $("#ClienteId option:selected").text()+ "");
 
             var columns = ["Codigo", "Descripcion", "Precio", "Cantidad", "Importe"];
-            var data = [
-                [1, "Hola", "hola@gmail.com", "Mexico"],
-                [2, "Hello", "hello@gmail.com", "Estados Unidos"],
-                [3, "Otro", "otro@gmail.com", "Otro"]
-            ];
 
             pdf.autoTable(columns, datos_g,
                 { margin: { top: 55 } },
@@ -492,12 +527,59 @@
             let finalY = pdf.autoTable.previous.finalY+10; // The y position on the page
             pdf.text(155, finalY, "Total: " + total + "")
             //Print
-            pdf.autoPrint(); 
+            //pdf.autoPrint();
+            //window.open(pdf.output('bloburl'), '_blank');
+            //Save
+            pdf.save('mipdf.pdf');
+            muestraBtn();
+            limpiaTbl();
+
+        }
+
+        function generarImpr() {
+            var pdf = new jsPDF();
+            pdf.setFontSize(22)
+            pdf.text(160, 20, "Factura");
+            pdf.setFontSize(12)
+            pdf.text(160, 40, "No. Factura: " + factUltima.facturaId + "");
+            pdf.text(160, 45, "Fecha: " + document.getElementById("Fecha").value + "");
+            pdf.setFontSize(12)
+            pdf.text(15, 50, "Nombre Cliente:  " + $("#ClienteId option:selected").text() + "");
+
+            var columns = ["Codigo", "Descripcion", "Precio", "Cantidad", "Importe"];
+
+            pdf.autoTable(columns, datos_g,
+                { margin: { top: 55 } },
+
+            );
+            let finalY = pdf.autoTable.previous.finalY + 10; // The y position on the page
+            pdf.text(155, finalY, "Total: " + total + "")
+            //Print
+            pdf.autoPrint();
             window.open(pdf.output('bloburl'), '_blank');
             //Save
             //pdf.save('mipdf.pdf');
-
+            muestraBtn();
+            limpiaTbl();
+            var toastHTML = '<span>Si la ventana no abre, desbbloquee las ventanas emergentes</span><button class="btn-flat toast-action">Deshacer</button>';
+            M.toast({ html: toastHTML });
         }
+
+        $(document).ready(function () {
+            $('#nuevo').on('click', function () {
+                var tableHeaderRowCount = 1;
+                var table = document.getElementById('mytable');
+                var rowCount = table.rows.length;
+                for (var i = tableHeaderRowCount; i < rowCount; i++) {
+                    table.deleteRow(tableHeaderRowCount);
+                }
+                document.getElementById("Rtotal").innerHTML = "";
+                $('#Rprecio').val("").text();
+                $('#RDescripcion').val('').text();
+                $('#Rdispon').val('').text();
+                $("RCantidad").val('').text();
+            });
+        });
 
         function totalito() {
             var tabla2 = document.getElementById("mytable");
@@ -528,7 +610,7 @@
         }
         ///fin pdf
         cargarProductos();
-    </script>
+    </script>-->
 
 </head>
 <body>
@@ -559,23 +641,23 @@
             <li><a class="nounderline" href="#about"><i class="material-icons">build</i>Mantenimiento</a></li>
             <li><a class="nounderline" href="#about"><i class="material-icons">settings</i>Configuracion</a></li>
             @if (SignInManager.IsSignedIn(User))
-             {
-                    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
-                          method="post" class="navbar-right">
-                        <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="material-icons">exit_to_app</i>Salir</a></li>
+            {
+                <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+                      method="post" class="navbar-right">
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="material-icons">exit_to_app</i>Salir</a></li>
 
-                    </form>
-             }
+                </form>
+            }
             else
             {
 
-                    <li><a asp-controller="Account" asp-action="Register"><i class="material-icons">help</i>Ayuda</a></li>
-                    <li><a asp-controller="Account" asp-action="Login"><i class="material-icons">exit_to_app</i>Salir</a></li>
+                <li><a asp-controller="Account" asp-action="Register"><i class="material-icons">help</i>Ayuda</a></li>
+                <li><a asp-controller="Account" asp-action="Login"><i class="material-icons">exit_to_app</i>Salir</a></li>
 
             }
         </ul>
 
-        
+
     </header>
     <div class="container" id="container">
         <div class="row">
@@ -590,7 +672,10 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="../../lib/materialize/js/materialize.min.js"></script>
-    <!---<script src="~/misJs/propios.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery/src/jquery-confirm.js"></script>
+
+    <script src="~/misJs/propios.js"></script>
 
 
 </body>
