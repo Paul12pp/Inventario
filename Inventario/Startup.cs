@@ -37,6 +37,11 @@ namespace Inventario
             services.AddTransient<IFacturaRepository, FacturaRepository>();
             services.AddTransient<IDetalleRepository, DetalleRepository>();
 
+            services.AddAuthentication().AddCookie(options =>
+            {
+                options.LoginPath = "/Login";
+
+            });
             services.AddMvc();
         }
 

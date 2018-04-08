@@ -50,7 +50,7 @@ namespace Inventario.Controllers
 
         public IActionResult Register()
         {
-            return View(new LoginViewModel());
+            return View(new RegisterViewModel());
         }
 
         [HttpPost]
@@ -81,6 +81,11 @@ namespace Inventario.Controllers
         }
 
         public IActionResult test()
+        {
+            return View();
+        }
+
+        public IActionResult test2()
         {
             return View();
         }

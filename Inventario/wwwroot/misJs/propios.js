@@ -13,10 +13,12 @@ var xhr = new XMLHttpRequest();
 var xhr2 = new XMLHttpRequest();
 var xhr3 = new XMLHttpRequest();
 var xhr4 = new XMLHttpRequest();
+var xhr5 = new XMLHttpRequest();
 var cantProd;
 var cantVent;
 var cantCl;
 var canProv;
+var facturita;
 
 
         function cargarProductos() {
@@ -26,30 +28,48 @@ var canProv;
         }
 
 function cargarClientes() {
-    xhr3.open('GET', 'http://localhost:5913/Cliente/obtenercliente', 'true');
+    xhr3.open('GET', 'http://localhost:5913/Cliente/ObtenerCliente', 'true');
     xhr3.responseType = 'text';
     xhr3.send();
 }
 
 function cargarProveedores() {
-    xhr4.open('GET', 'http://localhost:5913/Proveedor/obtenerproveedor', 'true');
+    xhr4.open('GET', 'http://localhost:5913/Proveedor/ObtenerProveedor', 'true');
     xhr4.responseType = 'text';
     xhr4.send();
 }
 
-xh4.onload = function () {
+function cargarFact() {
+    xhr5.open('GET', 'http://localhost:5913/Factura/ObtenerFactura', 'true');
+    xhr5.responseType = 'text';
+    xhr5.send();
+
+}
+
+xhr5.onload = function () {
+    if (xhr5.status === 200) {
+        facturita = JSON.parse(xhr5.responseText);
+        console.log(facturita);
+        cantVent = facturita.length;
+        $('#cantVent').text(cantVent);
+    }
+}
+
+xhr4.onload = function () {
     if (xhr4.status === 200) {
         proveedores = JSON.parse(xhr4.responseText);
         console.log(proveedores);
         canProv = proveedores.length;
+        $('#cantProv').text(canProv);
     }
 }
 
-xh3.onload = function () {
+xhr3.onload = function () {
     if (xhr3.status === 200) {
         clientes = JSON.parse(xhr3.responseText);
         console.log(clientes);
         cantCl = clientes.length;
+        $('#cantCl').text(cantCl);
     }
 }
 
@@ -83,19 +103,19 @@ xh3.onload = function () {
         }
 
         function cargarFactura() {
-        xhr2.open('GET', 'http://localhost:5913/Factura/ObtenerFactura', 'true');
-    xhr2.responseType = 'text';
+            xhr2.open('GET', 'http://localhost:5913/Factura/ObtenerFactura', 'true');
+            xhr2.responseType = 'text';
             xhr2.send();
 
             xhr2.onload = function () {
                 if (xhr2.status === 200) {
-        factura = JSON.parse(xhr2.responseText);
-    console.log(factura);
+                    factura = JSON.parse(xhr2.responseText);
+                    console.log(factura);
                     factUltima = factura[factura.length - 1];
                     console.log(factUltima);
                     paso3();
                 }
-                cantVent = factura.length;
+
             }
 
         }
@@ -618,4 +638,7 @@ xh3.onload = function () {
             document.getElementById("Rtotal").innerHTML = total;
         }
         ///fin pdf
-        cargarProductos();
+cargarFact();
+cargarProductos();
+cargarClientes();
+cargarProveedores();

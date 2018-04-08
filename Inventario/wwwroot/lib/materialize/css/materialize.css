@@ -205,7 +205,7 @@
 }
 
 .pink {
-  background-color: #e91e63 !important;
+  background-color: #4cff00 !important;
 }
 
 .pink-text {
@@ -4279,11 +4279,11 @@ table span.badge {
 }
 
 nav {
-  color: #fff;
-  background-color: #ee6e73;
-  width: 100%;
-  height: 56px;
-  line-height: 56px;
+    color: #fff;
+    background-color: #00bcd4;
+    width: 100%;
+    height: 56px;
+    line-height: 56px;
 }
 
 nav.nav-extended {
@@ -5265,14 +5265,14 @@ header, main, footer {
 }
 
 .btn, .btn-large, .btn-small {
-  text-decoration: none;
-  color: #fff;
-  background-color: #26a69a;
-  text-align: center;
-  letter-spacing: .5px;
-  -webkit-transition: background-color .2s ease-out;
-  transition: background-color .2s ease-out;
-  cursor: pointer;
+    text-decoration: none;
+    color: #fff;
+    background-color: #ff4081;
+    text-align: center;
+    letter-spacing: .5px;
+    -webkit-transition: background-color .2s ease-out;
+    transition: background-color .2s ease-out;
+    cursor: pointer;
 }
 
 .btn:hover, .btn-large:hover, .btn-small:hover {
@@ -6569,7 +6569,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 }
 
 .input-field .prefix.active {
-  color: #26a69a;
+  color: #00bcd4;
 }
 
 .input-field .prefix ~ input,

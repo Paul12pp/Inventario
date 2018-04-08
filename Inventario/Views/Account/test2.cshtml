@@ -1,13 +1,73 @@
 ﻿@model Inventario.ViewModels.RegisterViewModel
+
 @{
-    Layout = "";
+    Layout = null;
 }
+
+
 <html lang="en">
 
 <head>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="~/css/LogGister.css">
+    <style>
+        .cyan {
+            background-color: #00bcd4 !important;
+        }
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+            background-color: #00bcd4 !important;
+        }
+
+        main {
+            flex: 1 0 auto;
+            background-color: #00bcd4 !important;
+        }
+
+
+        .input-field input[type=date]:focus + label,
+        .input-field input[type=text]:focus + label,
+        .input-field input[type=email]:focus + label,
+        .input-field input[type=password]:focus + label {
+            color: #00bcd4;
+        }
+
+        .input-field input[type=date]:focus,
+        .input-field input[type=text]:focus,
+        .input-field input[type=email]:focus,
+        .input-field input[type=password]:focus {
+            border-bottom: 2px solid #00bcd4;
+            box-shadow: none;
+        }
+
+        .login-form {
+            width: 280px
+        }
+
+        .login-form-text {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        html {
+            display: table;
+            margin: auto;
+        }
+
+        body {
+            display: table-cell;
+            vertical-align: middle;
+        }
+    </style>
 </head>
 
 <body class="cyan">
@@ -35,8 +95,6 @@
                         <i class="mdi-communication-email prefix"></i>
                         <input asp-for="Email">
                         <label for="email" class="center-align">Email</label>
-                        <span asp-validation-for="Email" class="text-danger"></span>
-
                     </div>
                 </div>
                 <div class="row margin">
@@ -44,8 +102,6 @@
                         <i class="mdi-action-lock-outline prefix"></i>
                         <input asp-for="Password">
                         <label for="password">Password</label>
-                        <span asp-validation-for="Password" class="text-danger"></span>
-
                     </div>
                 </div>
                 <div class="row margin">
@@ -53,14 +109,12 @@
                         <i class="mdi-action-lock-outline prefix"></i>
                         <input id="password-again" type="password">
                         <label for="password-again">Password again</label>
-                        <span asp-validation-for="Password" class="text-danger"></span>
-
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s12">
                         <center>
-                            <input type="submit" value="Register" class="btn btn-primary col s12">
+                            <input type="submit" value="Register" class="btn btn-primary">
                         </center>
                     </div>
                     <div class="input-field col s12">

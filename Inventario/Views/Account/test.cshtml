@@ -3,25 +3,151 @@
     ViewData["Title"] = "test";
     Layout = "";
 }
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Popo</title>
-    <link rel="stylesheet" type="text/css" href="~/css/test.css">
 
-</head>
-<body>
-    <div class="body"></div>
-    <div class="grad"></div>
-    <div class="header">
-        <div>Site<span>Random</span></div>
-    </div>
-    <br>
-    <div class="login">
-        <input type="text" placeholder="username" name="user"><br>
-        <input type="password" placeholder="password" name="password"><br>
-        <input type="button" value="Login">
-    </div>
+<html lang="en">
+
+    <head>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+        <style>
+            .cyan {
+                background-color: #00bcd4 !important;
+            }
+            body {
+                display: flex;
+                min-height: 100vh;
+                flex-direction: column;
+                background-color: #00bcd4 !important;
+            }
+
+            main {
+                flex: 1 0 auto;
+                background-color: #00bcd4 !important;
+            }
+
+
+            .input-field input[type=date]:focus + label,
+            .input-field input[type=text]:focus + label,
+            .input-field input[type=email]:focus + label,
+            .input-field input[type=password]:focus + label {
+                color: #00bcd4;
+            }
+
+            .input-field input[type=date]:focus,
+            .input-field input[type=text]:focus,
+            .input-field input[type=email]:focus,
+            .input-field input[type=password]:focus {
+                border-bottom: 2px solid #00bcd4;
+                box-shadow: none;
+            }
+            .login-form {
+                width: 280px
+            }
+
+            .login-form-text {
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                font-size: 0.8rem
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+
+            html {
+                display: table;
+                margin: auto;
+            }
+
+            body {
+                display: table-cell;
+                vertical-align: middle;
+            }
+
+            .red:checked + label:before {
+                top: -4px;
+                left: -3px;
+                width: 12px;
+                height: 22px;
+                border-top: 2px solid transparent;
+                border-left: 2px solid transparent;
+                border-right: 2px solid #00bcd4; /* You need to change the colour here */
+                border-bottom: 2px solid #00bcd4; /* And here */
+                -webkit-transform: rotate(40deg);
+                -moz-transform: rotate(40deg);
+                -ms-transform: rotate(40deg);
+                -o-transform: rotate(40deg);
+                transform: rotate(40deg);
+                -webkit-backface-visibility: hidden;
+                -webkit-transform-origin: 100% 100%;
+                -moz-transform-origin: 100% 100%;
+                -ms-transform-origin: 100% 100%;
+                -o-transform-origin: 100% 100%;
+                transform-origin: 100% 100%;
+            }
+
+
+
+        </style>
+    </head>
+
+    <body class="cyan">
+
+
+            <div class="col s12 z-depth-4 card-panel">
+                <form asp-action="Login" asp-controller="Account" method="post" role="form" class="login-form">
+                    <div class="row">
+                        <div class="input-field col s12 center">
+                            <img src="~/images/login-logo.png" alt="" class="circle responsive-img valign profile-image-login">
+                            <p class="center login-form-text">Material Design Admin Template</p>
+                        </div>
+                    </div>
+
+
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-social-person-outline prefix"></i>
+                            <input asp-for="UserName">
+                            <label for="username" class="center-align">Username</label>
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="row margin">
+                        <div class="input-field col s12">
+                            <i class="mdi-action-lock-outline prefix"></i>
+                            <input asp-for="Password">
+                            <label for="password">Password</label>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12 m12 l12  login-text">
+                            <input type="checkbox" id="remember-me" class="red" />
+                            <label for="remember-me">Remember me</label>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <a href="index.html" class="btn waves-effect waves-light col s12">Login</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s6 m6 l6">
+                            <p class="margin medium-small"><a asp-action="Register">Register Now!</a></p>
+                        </div>
+                        <div class="input-field col s6 m6 l6">
+                            <p class="margin right-align medium-small"><a href="page-forgot-password.html">Forgot password?</a></p>
+                        </div>
+                    </div>
+                </form>
+        
+            </div>
+
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 </body>
+
 </html>
