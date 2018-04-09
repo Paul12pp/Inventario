@@ -565,7 +565,7 @@ xhr3.onload = function () {
 
         }
 
-        function generarImpr() {
+ function generarImpr() {
             var pdf = new jsPDF();
             pdf.setFontSize(22)
             pdf.text(160, 20, "Factura");
@@ -582,7 +582,7 @@ xhr3.onload = function () {
 
             );
             let finalY = pdf.autoTable.previous.finalY + 10; // The y position on the page
-            pdf.text(155, finalY, "Total: " + total + "")
+            pdf.text(155, finalY, "Total: " + total + "");
             //Print
             pdf.autoPrint();
             window.open(pdf.output('bloburl'), '_blank');
@@ -590,9 +590,24 @@ xhr3.onload = function () {
             //pdf.save('mipdf.pdf');
             muestraBtn();
             limpiaTbl();
-            var toastHTML = '<span>Si la ventana no abre, desbbloquee las ventanas emergentes</span><button class="btn-flat toast-action">Deshacer</button>';
-            M.toast({html: toastHTML });
-        }
+            var toastHTML = '<span>Si la ventana no abre, desbloquee las ventanas emergentes</span><button class="btn-flat toast-action">Deshacer</button>';
+            M.toast({ html: toastHTML });
+
+}
+function genenerarCsv(){
+ 
+    var csv = 'Factura\nTotal:' + total+'\nCodigo,Descripcion,Precio,Cantidad,Importe\n';
+        datos_g.forEach(function (row) {
+            csv += row.join(',');
+            csv += "\n";
+        });
+        console.log(csv);
+        var hiddenElement = document.createElement('a');
+        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+        hiddenElement.target = '_blank';
+        hiddenElement.download = 'people.csv';
+        hiddenElement.click();
+}
 
         $(document).ready(function () {
         $('#nuevo').on('click', function () {
@@ -614,7 +629,7 @@ xhr3.onload = function () {
             var tabla2 = document.getElementById("mytable");
             var tdsTabla2 = tabla2.getElementsByTagName("tr");
             var i = 0;
-            var f = 0
+            var f = 0;
             var ilo = ['', 'ProductoId', 'Descripcion', 'Precio', 'Cantidad', 'Importe'];
             for (i = 0; i < tdsTabla2.length; i++) {
                 for (f = 0; f < 6; f++) {

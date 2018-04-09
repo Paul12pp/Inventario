@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Inventario.ViewModels;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +29,7 @@ namespace Inventario.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
+
             if (!ModelState.IsValid)
                 return View(loginViewModel);
 
@@ -37,15 +40,17 @@ namespace Inventario.Controllers
             {
                 var result = await 
                     _signInManager.PasswordSignInAsync
-                        (user, loginViewModel.Password, false, false);
+                        (user, loginViewModel.Password, true, false);
                 if (result.Succeeded)
                 {
+                    
                     return RedirectToAction("Index", "Home");
                 }
             }
 
             ModelState.AddModelError("", "User name/password not found");
             return View(loginViewModel);
+
         }
 
         public IActionResult Register()
@@ -64,6 +69,7 @@ namespace Inventario.Controllers
                     Email = registerViewModel.Email
                 };
                 var result = await _userManager.CreateAsync(user, registerViewModel.Password);
+                
 
                 if (result.Succeeded)
                 {
@@ -89,5 +95,7 @@ namespace Inventario.Controllers
         {
             return View();
         }
+
+
     }
 }

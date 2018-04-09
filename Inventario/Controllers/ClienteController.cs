@@ -37,7 +37,6 @@ namespace Inventario.Controllers
         }
 
         private bool ClienteExists(int id)
-
         {
 
             return _appDbContext.Clientes.Any(e => e.ClienteId== id);

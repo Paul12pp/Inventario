@@ -6,11 +6,13 @@
 
   <ItemGroup>
     <None Include="wwwroot\css\bootstrap-vertical-menu.css" />
+    <None Include="wwwroot\lib\app.js" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AlanJuden.MvcReportViewer.NetCore" Version="1.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.3" />
     <PackageReference Include="Microsoft.Report.Viewer" Version="11.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" />
     <PackageReference Include="MicrosoftReportViewerWebForms" Version="11.0.0" />

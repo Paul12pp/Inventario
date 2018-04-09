@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace Inventario
 {
@@ -37,11 +40,19 @@ namespace Inventario
             services.AddTransient<IFacturaRepository, FacturaRepository>();
             services.AddTransient<IDetalleRepository, DetalleRepository>();
 
-            services.AddAuthentication().AddCookie(options =>
-            {
-                options.LoginPath = "/Login";
-
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options => {
+                        options.LoginPath = "/Account/Login/";
+                        
+                    });
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
+            services.AddSingleton<IFileProvider>(
+                new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+
+            services.AddNodeServices();
             services.AddMvc();
         }
 
@@ -51,7 +62,6 @@ namespace Inventario
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-
             app.UseAuthentication();
             app.UseMvc(routes =>
             {
