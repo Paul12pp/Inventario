@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Inventario.Models
             _appDbContext.Facturas.Add(factura);
             _appDbContext.SaveChanges();
         }
-
+       
 
     }
 }

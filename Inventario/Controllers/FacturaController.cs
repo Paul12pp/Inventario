@@ -83,23 +83,6 @@ namespace Inventario.Controllers
             return View(facturaViewModel);
         }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
-        {
-            
-
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var facturas = await _appDbContext.Facturas.Where(d => d.FacturaId ==id).FirstOrDefaultAsync(d => d.FacturaId == id);
-
-            if (facturas == null)
-            {
-                return NotFound();
-            }
-            return View("List");
-        }
 
     }
 }

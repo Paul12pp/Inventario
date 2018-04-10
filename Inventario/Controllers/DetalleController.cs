@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Inventario.Models;
+using Inventario.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventario.Controllers
 {
@@ -40,6 +42,21 @@ namespace Inventario.Controllers
             return Json(detalle);
         }
 
+        public IActionResult Details()
+        {
+            ViewBag.Title = "Cliente overview";
+
+            var clientes = _appDbContext.Detalles.Include(c=> c.Producto);
+            /*
+            var clienteViewModel = new DetalleViewModel()
+            {
+                Detalles=clientes.ToList(),
+                Title = "Lista de clientes"
+            };
+            return View(clienteViewModel);
+            */
+            return View(clientes.ToList());
+        }
 
 
     }
