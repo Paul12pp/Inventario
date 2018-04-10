@@ -5259,10 +5259,10 @@ header, main, footer {
   line-height: inherit;
 }
 
-.btn:focus, .btn-large:focus, .btn-small:focus,
-.btn-floating:focus {
-  background-color: #1d7d74;
-}
+    .btn:focus, .btn-large:focus, .btn-small:focus,
+    .btn-floating:focus {
+        background-color: #ff4081;
+    }
 
 .btn, .btn-large, .btn-small {
     text-decoration: none;
@@ -5275,9 +5275,9 @@ header, main, footer {
     cursor: pointer;
 }
 
-.btn:hover, .btn-large:hover, .btn-small:hover {
-  background-color: #2bbbad;
-}
+    .btn:hover, .btn-large:hover, .btn-small:hover {
+        background-color: #ff4081;
+    }
 
 .btn-floating {
   display: inline-block;

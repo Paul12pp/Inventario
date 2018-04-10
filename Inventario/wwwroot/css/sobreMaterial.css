@@ -1,4 +1,14 @@
 ﻿
+.btn:hover, .btn-large:hover, .btn-small:hover {
+    background-color: #ff80ab;
+}
+
+.btn:focus, .btn-large:focus, .btn-small:focus,
+.btn-floating:focus {
+    background-color: #f06292;
+}
+
+
 .btn, .btn-large, .btn-small {
     text-decoration: none;
     color: #fff;
@@ -9,11 +19,6 @@
     transition: background-color .2s ease-out;
     cursor: pointer;
 }
-
-    .btn:hover, .btn-large:hover, .btn-small:hover {
-        background-color: #ff80ab;
-    }
-
 
 
 nav {

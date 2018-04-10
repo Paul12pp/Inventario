@@ -10,8 +10,6 @@ namespace Inventario.Models
         IEnumerable<Factura> GetAllFacturas();
         Factura GetFacturaById(int facturaId);
         void AddFactura(Factura factura);
-        Producto GetProductoById(int productoId);
-
 
     }
 }

@@ -1,12 +1,15 @@
 ﻿@model ClienteViewModel
-
+@{
+    ViewData["Title"] = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 
 <h4 class="header">Lista de clientes</h4>
 
 <div class="panel panel-default col s12">
     <!-- Default panel contents -->
     <div class="panel-heading">Panel de clientes</div>
-    <table class="table highlight">
+    <table class="table highlight responsive-table" id="clTbl">
         <thead>
             <tr>
                 <th>
@@ -27,6 +30,7 @@
                 <th>
                     Email
                 </th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -59,7 +63,6 @@
                         @Html.DisplayFor(modelItem => item.Email)
                     </td>
                     <td>
-
                         <a asp-action="Edit" asp-route-id="@item.ClienteId" class="btn-floating btn-small waves-effect waves-light #26a69a"><i class="material-icons">edit</i></a>
                     </td>
                     <td>

@@ -5,9 +5,11 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using Inventario.Models;
+using Inventario.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 
 
@@ -65,6 +67,38 @@ namespace Inventario.Controllers
         public string TellMeDate()
         {
             return DateTime.Today.ToString();
+        }
+
+        public IActionResult List()
+        {
+            ViewBag.Title = "Facturas overview";
+
+            var facturas = _facturaRepository.GetAllFacturas().OrderByDescending(c=>c.FacturaId);
+
+            var facturaViewModel = new FacturaViewModel()
+            {
+                Facturas = facturas.ToList(),
+                Title = "Lista de facturas"
+            };
+            return View(facturaViewModel);
+        }
+
+        public async Task<IActionResult> OnGetAsync(int? id)
+        {
+            
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var facturas = await _appDbContext.Facturas.Where(d => d.FacturaId ==id).FirstOrDefaultAsync(d => d.FacturaId == id);
+
+            if (facturas == null)
+            {
+                return NotFound();
+            }
+            return View("List");
         }
 
     }

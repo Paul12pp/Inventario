@@ -120,17 +120,147 @@ xhr3.onload = function () {
 
         }
 
-        $(document).ready(function () {
-        $('select').formSelect();
-    });
+$(document).ready(function () {
+    $('select').formSelect();
+});
 
-        $(document).ready(function () {
-        $('.sidenav').sidenav();
-    });
+$(document).ready(function () {
+   $('.sidenav').sidenav();
+});
 
-        $(document).ready(function () {
-        $('.datepicker').datepicker();
+ $(document).ready(function () {
+   $('.datepicker').datepicker({
+         // Creates a dropdown to control month
+         // Creates a dropdown of 15 years to control year
+        format: 'yyyy-mm-dd'
+   });
+});
+
+$(document).ready(function () {
+    $('#clTbl').DataTable({
+        dom: 'Bfrtip',
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+
+        }
     });
+});
+$(document).ready(function () {
+    $('#listPr').DataTable({
+        dom: 'Bfrtip',
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+
+        }
+    });
+});
+$(document).ready(function () {
+    $('#PrTbl').DataTable({
+        dom: 'Bfrtip',
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+
+        }
+    });
+});
+
+$(document).ready(function () {
+    $('#factTable').DataTable({
+        dom: 'Bfrtip',
+        "language": {
+            "sProcessing": "Procesando...",
+            "sLengthMenu": "Mostrar _MENU_ registros",
+            "sZeroRecords": "No se encontraron resultados",
+            "sEmptyTable": "Ningún dato disponible en esta tabla",
+            "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+            "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+            "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "sInfoPostFix": "",
+            "sSearch": "Buscar:",
+            "sUrl": "",
+            "sInfoThousands": ",",
+            "sLoadingRecords": "Cargando...",
+            "oPaginate": {
+                "sFirst": "Primero",
+                "sLast": "Último",
+                "sNext": "Siguiente",
+                "sPrevious": "Anterior"
+            },
+            "oAria": {
+                "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+            }
+           
+        }
+    });
+   
+    //$("select").val('10');
+    //$('select').addClass("browser-default");
+    //$('select').material_select();
+});
 
         var opcion_seleccionada = "";
         $(document).on('change','#ProductoId', function () {
@@ -414,7 +544,7 @@ xhr3.onload = function () {
         console.log('paso 1');
     var factura = {
         ClienteId: $('#ClienteId').val(),
-                Fecha: $('#Fecha').val()
+        Fecha: $('#Fecha').val()
             }
             if (factura != null) {
         $.ajax({
@@ -453,27 +583,33 @@ xhr3.onload = function () {
     ocultaBtn();
         }
 
-        function ocultaBtn() {
+function ocultaBtn() {
 
-        document.getElementById('adicionar').style.display = 'none';
+    document.getElementById('adicionar').style.display = 'none';
     document.getElementById('nuevo').style.display = 'none';
-            document.getElementById('facturar').style.display = 'none';
-            document.getElementById('print').style.display = '';
-            document.getElementById('expdf').style.display = '';
+    document.getElementById('facturar').style.display = 'none';
+    document.getElementById('list').style.display = 'none';
+    document.getElementById('print').style.display = '';
+    document.getElementById('expdf').style.display = '';
+    document.getElementById('expcsv').style.display = '';
+    document.getElementById('cancelar').style.display = '';
 
-        }
+}
 
-        function muestraBtn() {
+function muestraBtn() {
 
-        document.getElementById('adicionar').style.display = '';
+    document.getElementById('adicionar').style.display = '';
     document.getElementById('nuevo').style.display = '';
-            document.getElementById('facturar').style.display = '';
-            document.getElementById('print').style.display = 'none';
+    document.getElementById('facturar').style.display = '';
+    document.getElementById('list').style.display = '';
+    document.getElementById('print').style.display = 'none';
             document.getElementById('expdf').style.display = 'none';
+        document.getElementById('expcsv').style.display = 'none';
+        document.getElementById('cancelar').style.display = 'none';
 
-        }
+}
 
-        function limpiaTbl(){
+function limpiaTbl(){
             var tableHeaderRowCount = 1;
             var table = document.getElementById('mytable');
             var rowCount = table.rows.length;
@@ -485,7 +621,22 @@ xhr3.onload = function () {
             $('#RDescripcion').val('').text();
             $('#Rdispon').val('').text();
             $("RCantidad").val('').text();
-        }
+}
+function limpiaTbl2() {
+    var tableHeaderRowCount = 1;
+    var table = document.getElementById('mytable');
+    var rowCount = table.rows.length;
+    for (var i = tableHeaderRowCount; i < rowCount; i++) {
+        table.deleteRow(tableHeaderRowCount);
+    }
+    document.getElementById("Rtotal").innerHTML = "";
+    $('#Rprecio').val("").text();
+    $('#RDescripcion').val('').text();
+    $('#Rdispon').val('').text();
+    $("RCantidad").val('').text();
+    muestraBtn();
+    
+}
 
         function filita2() {
             var tabla2 = document.getElementById("mytable");
@@ -597,16 +748,18 @@ xhr3.onload = function () {
 function genenerarCsv(){
  
     var csv = 'Factura\nTotal:' + total+'\nCodigo,Descripcion,Precio,Cantidad,Importe\n';
-        datos_g.forEach(function (row) {
+    datos_g.forEach(function (row) {
             csv += row.join(',');
             csv += "\n";
-        });
-        console.log(csv);
-        var hiddenElement = document.createElement('a');
-        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
-        hiddenElement.target = '_blank';
-        hiddenElement.download = 'people.csv';
-        hiddenElement.click();
+    });
+    console.log(csv);
+    var hiddenElement = document.createElement('a');
+    hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csv);
+    hiddenElement.target = '_blank';
+    hiddenElement.download = 'people.csv';
+    hiddenElement.click();
+    muestraBtn();
+    limpiaTbl();
 }
 
         $(document).ready(function () {

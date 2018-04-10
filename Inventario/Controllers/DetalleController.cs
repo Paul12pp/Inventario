@@ -39,5 +39,8 @@ namespace Inventario.Controllers
             }
             return Json(detalle);
         }
+
+
+
     }
 }

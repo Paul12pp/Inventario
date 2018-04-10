@@ -14,7 +14,7 @@
                 </div>
                 <div class=" col s4">
                     <label>Fecha</label>
-                    <input id="Fecha" type="date" class="date-text" />
+                    <input id="Fecha" type="text" class="datepicker"/>
                     <span class="text-danger"></span>
                 </div>
             </div>
@@ -49,15 +49,15 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" id="create" />
-                
+                <!-- <input type="submit" value="Create" class="btn btn-default" id="create" />-->
+
             </div>
         </form>
     </div>
 </div>
 <div class="panel panel-default col s12 row">
     <div class="panel-heading">Panel de productos</div>
-    <table class="table highlight" id="mytable">
+    <table class="responsive-table" id="mytable">
         <thead>
             <tr>
                 <th>
@@ -80,22 +80,25 @@
         </thead>
         <tbody></tbody>
     </table>
-</div>
-<div class="row" id="total">
-    <div class="col 2">
-        <p><b>Total: </b></p>
+    <div class="row" id="total">
+        <div class="col 2">
+            <p><b>Total: </b></p>
+        </div>
+        <div class="col 2">
+            <p id="Rtotal"></p>
+        </div>
     </div>
-    <div class="col 2">
-        <p id="Rtotal"></p>
-    </div>
 </div>
+
 <p>
-    <a href="#" id="expdf" class="btn btn-default" style="display:none;" onclick="generarDesc();">Exportar pdf</a>
-    <a href="#" id="print" class="btn btn-default" style="display:none;" onclick="generarImpr();">Imprimir</a>
-    <a href="#" id="adicionar" class="btn btn-default">Colocar</a>
-    <a href="#" id="nuevo" class="btn btn-default">Nuevo</a>
-    <a href="#" id="facturar" onclick="paso1()" class="btn btn-default">Facturar</a>
-    <a asp-action="List" class="btn btn-default">Cancelar</a>
+    <a href="#" id="expdf" class="waves-effect waves-light btn" style="display:none;" onclick="generarDesc();"><i class="material-icons left">file_download</i>Exportar pdf</a>
+    <a href="#" id="print" class="waves-effect waves-light btn" style="display:none;" onclick="generarImpr();"><i class="material-icons left">print</i>Imprimir</a>
+    <a href="#" id="expcsv" class="waves-effect waves-light btn" style="display:none;" onclick="genenerarCsv();"><i class="material-icons left">file_download</i>Exportar csv</a>
+    <a href="#" id="cancelar" class="waves-effect waves-light btn" style="display:none;" onclick="limpiaTbl2();">Cancelar</a>
+    <a href="#" id="adicionar" class="waves-effect waves-light btn">Colocar</a>
+    <a href="#" id="nuevo" class="waves-effect waves-light btn">Nuevo</a>
+    <a href="#" id="facturar" onclick="paso1()" class="waves-effect waves-light btn">Facturar</a>
+    <a asp-action="List" id="list" class="waves-effect waves-light btn">Cancelar</a>
 </p>
 <p id="rData">
 </p>

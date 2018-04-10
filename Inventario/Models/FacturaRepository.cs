@@ -30,11 +30,6 @@ namespace Inventario.Models
             _appDbContext.SaveChanges();
         }
 
-        public Producto GetProductoById(int productoId)
-        {
-            return _appDbContext.Productos.FirstOrDefault(p => p.ProductoId == productoId);
-        }
-
 
     }
 }
