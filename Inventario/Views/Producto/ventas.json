@@ -1,0 +1,44 @@
+﻿{
+  "Ventas": [
+    {
+      "Mes": "April",
+      "Name": "Arroz",
+      "Total": 638.00
+    },
+    {
+      "Mes": "March",
+      "Name": "Arroz",
+      "Total": 22.00
+    },
+    {
+      "Mes": "April",
+      "Name": "Batata",
+      "Total": 888.00
+    },
+    {
+      "Mes": "April",
+      "Name": "Platano",
+      "Total": 928.00
+    },
+    {
+      "Mes": "February",
+      "Name": "Platano",
+      "Total": 180.00
+    },
+    {
+      "Mes": "March",
+      "Name": "Platano",
+      "Total": 58.00
+    },
+    {
+      "Mes": "April",
+      "Name": "Yuca",
+      "Total": 315.00
+    },
+    {
+      "Mes": "March",
+      "Name": "Yuca",
+      "Total": 103.00
+    }
+  ]
+}

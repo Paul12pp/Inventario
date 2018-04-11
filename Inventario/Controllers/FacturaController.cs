@@ -26,10 +26,19 @@ namespace Inventario.Controllers
             _appDbContext = appDbContext;
             _facturaRepository = facturaRepository;
         }
-        public IActionResult Index()
+        public IActionResult  Details(int? id)
         {
-
-            return View();
+            
+            //var viewModel = new FacturaViewModel();
+            /*
+            viewModel.Facturas = _appDbContext.Facturas
+                .Include(i => i.Cliente)
+                .Include(i => i.Detalles.Select(c => c.FacturaId))
+                .OrderBy(i => i.ClienteId);
+            */
+            var lista = _appDbContext.Facturas.Where(x => x.FacturaId == id).Include(x => x.Detalles).ToList();
+            var pp = _appDbContext.Detalles.Where(x => x.FacturaId == id).Include(x => x.Factura).Include(z=>z.Producto).ToList();
+            return View(pp);
         }
 
         public IActionResult Create()
@@ -74,14 +83,19 @@ namespace Inventario.Controllers
             ViewBag.Title = "Facturas overview";
 
             var facturas = _facturaRepository.GetAllFacturas().OrderByDescending(c=>c.FacturaId);
-
+            var pp = _appDbContext.Facturas.OrderByDescending(x=>x.FacturaId).Include(x=>x.Cliente).ToList();
+           
+            /*
             var facturaViewModel = new FacturaViewModel()
             {
                 Facturas = facturas.ToList(),
                 Title = "Lista de facturas"
-            };
-            return View(facturaViewModel);
+            };*/
+
+            return View(pp);
         }
+
+        
 
 
     }

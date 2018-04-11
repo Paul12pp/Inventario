@@ -1,42 +1,52 @@
-﻿@model FacturaViewModel
+﻿@model IEnumerable<Factura>
 
 @{
     ViewData["Title"] = "List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>List</h2>
+<h2>Ventas</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="responsive-table" id="factTable">
     <thead>
         <tr>
-                <th>
-                   Fecha
-                </th>
             <th>
-                Cliente
+                Id Cliente
             </th>
-            <th></th>
+            <th>
+                Nombre Cliente
+            </th>
+            <th>
+                Fecha
+            </th>
+            <th>
+
+            </th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.Facturas) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Fecha)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ClienteId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.FacturaId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.FacturaId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.FacturaId">Delete</a>
-            </td>
-        </tr>
- }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ClienteId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.FacturaId" class="btn-floating btn-small waves-effect waves-light blue-grey"><i class="material-icons">more_horiz</i></a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
+<p>
+    <a asp-action="Create" class="btn-floating btn-small waves-effect waves-light blue"><i class="material-icons">add_shopping_cart</i></a>
+</p>
+<div id="chart_div">
+</div>

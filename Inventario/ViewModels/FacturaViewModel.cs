@@ -11,8 +11,13 @@ namespace Inventario.ViewModels
         
         public List<Factura> Facturas { get; set; }
         public string Title { get; set; }
-        public List<Cliente> Clientes { get; set; }
-        IEnumerable<Detalle> Detalles { get; set; }
+       // public List<Cliente> Clientes { get; set; }
+
+        public IEnumerable<Detalle> Detalles { get; set; }
+        public IEnumerable<Cliente> Clientes { get; set; }
+        public IEnumerable<Producto> Productos { get; set; }
+
+
         public DateTime Fecha { get; set; }
         public int ClienteId { get; set; }
 

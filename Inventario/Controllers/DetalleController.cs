@@ -58,6 +58,13 @@ namespace Inventario.Controllers
             return View(clientes.ToList());
         }
 
+        [ActionName("ObtenerDetalle")]
+        public JsonResult ObtenerDetalle()
+        {
+            var facturas = _detalleRepository.GetAllDetalles();
+            return Json(facturas);
+        }
+
 
     }
 }
