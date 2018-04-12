@@ -21,11 +21,12 @@ var cantVent;
 var cantCl;
 var cantProv;
 var facturita;
-//
+/
+/*
 var sumita1 = 0
 var sumita2 = 0
 var sumita3 = 0
-///
+*///
 
 
         function cargarProductos() {
@@ -60,8 +61,6 @@ xhr5.onload = function () {
         //console.log(facturita);
         cantVent = facturita.length;
         $('#cantVent').text(cantVent);
-        sumas2();
-        graph2();
     }
 }
 
@@ -143,10 +142,8 @@ $(document).ready(function () {
  $(document).ready(function () {
    $('.datepicker').datepicker({
        format: 'yyyy-mm-dd',
-       onStart: function () {
-           var date = new Date();
-           this.setDate(date.getFullYear(), date.getMonth() + 1, date.getDate())
-       }
+       minDate: 0,
+       maxDate: 2
        
    });
 });
@@ -823,7 +820,7 @@ function genenerarCsv(){
         ///fin pdf
 
 ///Sumas
-
+/*
 function sumas2() {
     for (var i = 0; i < facturita.length; i++) {
         if (facturita[i].clienteId == 2) {
@@ -844,7 +841,8 @@ function sumas2() {
         }
     }
 }
-///
+*//
+/*
 function graph2() {
 
     var oilCanvas = document.getElementById("myChart2");
@@ -875,6 +873,7 @@ function graph2() {
         data: oilData
     });
 }
+*/
 ////Cargas
 
 cargarFact();

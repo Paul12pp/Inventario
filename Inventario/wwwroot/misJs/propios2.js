@@ -2,6 +2,7 @@
 
 var xhr6 = new XMLHttpRequest();
 var xhr7 = new XMLHttpRequest();
+var xhr8 = new XMLHttpRequest();
 //
 var productos2;
 var cantProd;
@@ -10,8 +11,11 @@ var sumaY = 0;
 var sumaP = 0
 var sumaB = 0;
 var sumaA = 0;
+var facto;
 //
-
+var sumita1 = 0
+var sumita2 = 0
+var sumita3 = 0
 //
 var details;
 
@@ -25,6 +29,22 @@ function cargarProductos2() {
     xhr.open('GET', 'http://localhost:5913/Producto/ObtenerProducto', 'true');
     xhr.responseType = 'text';
     xhr.send();
+}
+//
+function cargarFacto() {
+    xhr8.open('GET', 'http://localhost:5913/Factura/ObtenerFactura', 'true');
+    xhr8.responseType = 'text';
+    xhr8.send();
+
+}
+//
+xhr8.onload = function () {
+    if (xhr8.status === 200) {
+        facto = JSON.parse(xhr8.responseText);
+        //console.log(facturita);
+        sumas2();
+        graph2();
+    }
 }
 //
 xhr6.onload = function () {
@@ -80,6 +100,27 @@ function sumas() {
     paso33();
 }
 //
+function sumas2() {
+    for (var i = 0; i < facturita.length; i++) {
+        if (facturita[i].clienteId == 2) {
+            //console.log(facturita[i]);
+            sumita1 += 1;
+        }
+    }
+    for (var i = 0; i < facturita.length; i++) {
+        if (facturita[i].clienteId == 1004) {
+            //console.log(facturita[i]);
+            sumita2 += 1;
+        }
+    }
+    for (var i = 0; i < facturita.length; i++) {
+        if (facturita[i].clienteId == 1005) {
+            //console.log(facturita[i]);
+            sumita3 += 1;
+        }
+    }
+}
+//
 ///Graph
 function graph() {
     var ctx = document.getElementById("myChart");
@@ -123,12 +164,45 @@ function graph() {
 
 //
 
+function graph2() {
+
+    var oilCanvas = document.getElementById("myChart2");
+
+    Chart.defaults.global.defaultFontFamily = "Lato";
+    Chart.defaults.global.defaultFontSize = 18;
+
+    var oilData = {
+        labels: [
+            "Paul",
+            "Raul",
+            "Ronaldino"
+        ],
+        datasets: [
+            {
+                data: [sumita1, sumita2, sumita3],
+                backgroundColor: [
+                    "#B5FFAE",
+                    "#A589C1",
+                    "#FCA985"
+
+                ]
+            }]
+    };
+
+    var pieChart = new Chart(oilCanvas, {
+        type: 'pie',
+        data: oilData
+    });
+}
+//
+
 function paso11() {
     cargarDet();
+    cargarFacto();
 }
 function paso22() {
     sumas();
-    //sumas2();
+    sumas2();
 }
 function paso33() {
     graph();
@@ -137,3 +211,4 @@ function paso33() {
 paso11();
 cargarDet();
 cargarProductos2();
+cargarFacto();

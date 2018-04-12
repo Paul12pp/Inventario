@@ -1,21 +1,107 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@using Microsoft.AspNetCore.Identity
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link rel="stylesheet" type="text/css" href="~/css/test.css">
 
 
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="../../lib/materialize/css/materialize.min.css" media="screen,projection" />
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/css/materialize.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <link rel="stylesheet" href="~/css/sobreMaterial.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://mrrio.github.io/jsPDF/dist/jspdf.debug.js"></script>
+    <script src="~/lib/jquery/src/jspdf.min.js"></script>
+    <script src="~/lib/jquery/src/jspdf.plugin.autotable.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js "></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
 
 </head>
 <body>
-    <div>
-        @RenderBody()
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo  center">Inventario</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down" style="transform: translateX(0px);"></ul>
+                <div class="container"><a href="#" data-target="slide-out" class="top-nav sidenav-trigger full hide-on-large-only"><i class="material-icons">menu</i></a></div>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#">@UserManager.GetUserAsync(User).Result.UserName</a></li>
+
+                </ul>
+            </div>
+        </nav>
+        <ul id="slide-out" class="sidenav sidenav-fixed" style="overflow: inherit;">
+            <li>
+                <div class="user-view">
+                    <div class="background" style="text-align:center;">
+                        <i id="icon" class="fa fa-dollar" style="text-shadow: rgb(166, 138, 25) 0px 0px 0px, rgb(174, 144, 26) 1px 1px 0px, rgb(182, 151, 28) 2px 2px 0px, rgb(190, 158, 29) 3px 3px 0px, rgb(197, 164, 30) 4px 4px 0px, rgb(205, 171, 31) 5px 5px 0px, rgb(213, 177, 32) 6px 6px 0px, rgb(221, 184, 34) 7px 7px 0px, rgb(229, 190, 35) 8px 8px 0px; font-size: 95px; color: rgb(166, 114, 55); height: 112px; width: 112px; line-height: 112px; border-radius: 50%; text-align: center; background-color: rgb(237, 197, 36);"></i>
+                    </div>
+                    <br />
+                    <br />
+                </div>
+            </li>
+            <li><a asp-controller="Home" asp-action="Index"><i class="material-icons">home</i>Home</a></li>
+            <li><a asp-controller="Cliente" asp-action="List"><i class="material-icons">account_circle</i>Cliente</a></li>
+            <li><a asp-controller="Proveedor" asp-action="List"><i class="material-icons">supervisor_account</i>Proveedores</a></li>
+            <li><a asp-controller="Producto" asp-action="List"><i class="material-icons">local_offer</i>Productos</a></li>
+            <li><a asp-controller="Factura" asp-action="Create"><i class="material-icons">shopping_cart</i>Facturacion</a></li>
+            <li><a asp-controller="Factura" asp-action="List"><i class="material-icons">timeline</i>Reportes ventas</a></li>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+                      method="post" class="navbar-right">
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()"><i class="material-icons">exit_to_app</i>Salir</a></li>
+
+                </form>
+            }
+            else
+            {
+
+                <li><a asp-controller="Account" asp-action="Register"><i class="material-icons">help</i>Ayuda</a></li>
+                <li><a asp-controller="Account" asp-action="Login"><i class="material-icons">exit_to_app</i>Salir</a></li>
+
+            }
+        </ul>
+
+
+    </header>
+    <div class="container" id="container">
+        <div class="row">
+            <div class="col s12 m9 offset-m1 x17 offset-xl2">
+                @RenderBody()
+            </div>
+        </div>
     </div>
 
+    <!-- jQuery is required by Materialize to function -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.4/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../../lib/materialize/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+    <script src="https://smtpjs.com/v2/smtp.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="~/misJs/propios.js"></script>
+    <script src="~/misJs/propios2.js"></script>
 
-   </body>
 
 
+</body>
 </html>
+
