@@ -339,7 +339,7 @@ $(document).ready(function () {
                     filita();
                     break;
 
-                case document.getElementById("RCantidad").value > document.getElementById("Rdispon").value:
+                case rcantidad > rdispon:
                     var toastHTML = '<span>Escriba una cantidad disponible</span><button class="btn-flat toast-action">Deshacer</button>';
                     M.toast({ html: toastHTML });
                     //alert("Esciba una cantidad menor");
