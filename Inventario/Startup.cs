@@ -45,13 +45,7 @@ namespace Inventario
                         options.LoginPath = "/Account/Login/";
                         
                     });
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
-            });
-            services.AddSingleton<IFileProvider>(
-                new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
-
+           
             services.AddNodeServices();
             services.AddMvc();
         }

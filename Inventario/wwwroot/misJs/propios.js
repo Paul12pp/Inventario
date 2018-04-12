@@ -2,7 +2,7 @@
         //mostrar();
 var clientes;
 var proveedores;
-var details;
+
         var productos;
         var factura;
         var factUltima;
@@ -15,12 +15,17 @@ var xhr2 = new XMLHttpRequest();
 var xhr3 = new XMLHttpRequest();
 var xhr4 = new XMLHttpRequest();
 var xhr5 = new XMLHttpRequest();
-var xhr6 = new XMLHttpRequest();
+
 var cantProd;
 var cantVent;
 var cantCl;
 var canProv;
 var facturita;
+//
+var sumita1 = 0
+var sumita2 = 0
+var sumita3 = 0
+///
 
 
         function cargarProductos() {
@@ -48,18 +53,6 @@ function cargarFact() {
 
 }
 
-function cargarDet() {
-    xhr6.open('GET', 'http://localhost:5913/Detalle/ObtenerDetalle', 'true');
-    xhr6.responseType = 'text';
-    xhr6.send();
-}
-
-xhr6.onload = function () {
-    if (xhr6.status === 200) {
-        details = JSON.parse(xhr6.responseText);
-        console.log(details);
-    }
-}
 
 xhr5.onload = function () {
     if (xhr5.status === 200) {
@@ -67,6 +60,8 @@ xhr5.onload = function () {
         //console.log(facturita);
         cantVent = facturita.length;
         $('#cantVent').text(cantVent);
+        sumas2();
+        graph2();
     }
 }
 
@@ -822,57 +817,64 @@ function genenerarCsv(){
         }
         ///fin pdf
 
-google.charts.load('current', { packages: ['corechart', 'bar'] });
-google.charts.setOnLoadCallback(drawAxisTickColors);
+///Sumas
 
-function drawAxisTickColors() {
-    var data = google.visualization.arrayToDataTable([
-        ['City', '2010 Population', '2000 Population'],
-        ['New York City, NY', 8175000, 8008000],
-        ['Los Angeles, CA', 3792000, 3694000],
-        ['Chicago, IL', 2695000, 2896000],
-        ['Houston, TX', 2099000, 1953000],
-        ['Philadelphia, PA', 1526000, 1517000]
-    ]);
-
-    var options = {
-        title: 'Population of Largest U.S. Cities',
-        chartArea: { width: '50%' },
-        hAxis: {
-            title: 'Total Population',
-            minValue: 0,
-            textStyle: {
-                bold: true,
-                fontSize: 12,
-                color: '#4d4d4d'
-            },
-            titleTextStyle: {
-                bold: true,
-                fontSize: 18,
-                color: '#4d4d4d'
-            }
-        },
-        vAxis: {
-            title: 'City',
-            textStyle: {
-                fontSize: 14,
-                bold: true,
-                color: '#848484'
-            },
-            titleTextStyle: {
-                fontSize: 14,
-                bold: true,
-                color: '#848484'
-            }
+function sumas2() {
+    for (var i = 0; i < facturita.length; i++) {
+        if (facturita[i].clienteId == 2) {
+            //console.log(facturita[i]);
+            sumita1 += 1;
         }
-    };
-    var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-    chart.draw(data, options);
+    }
+    for (var i = 0; i < facturita.length; i++) {
+        if (facturita[i].clienteId == 1004) {
+            //console.log(facturita[i]);
+            sumita2 += 1;
+        }
+    }
+    for (var i = 0; i < facturita.length; i++) {
+        if (facturita[i].clienteId == 1005) {
+            //console.log(facturita[i]);
+            sumita3 += 1;
+        }
+    }
 }
+///
+function graph2() {
 
+    var oilCanvas = document.getElementById("myChart2");
+
+    Chart.defaults.global.defaultFontFamily = "Lato";
+    Chart.defaults.global.defaultFontSize = 18;
+
+    var oilData = {
+        labels: [
+            "Paul",
+            "Raul",
+            "Ronaldino"
+        ],
+        datasets: [
+            {
+                data: [sumita1, sumita2, sumita3],
+                backgroundColor: [
+                    "#B5FFAE",
+                    "#A589C1",
+                    "#FCA985"
+                    
+                ]
+            }]
+    };
+
+    var pieChart = new Chart(oilCanvas, {
+        type: 'pie',
+        data: oilData
+    });
+}
+////Cargas
 
 cargarFact();
 cargarProductos();
 cargarClientes();
 cargarProveedores();
-cargarDet();
+
+
