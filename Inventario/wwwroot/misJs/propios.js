@@ -21,7 +21,7 @@ var cantVent;
 var cantCl;
 var cantProv;
 var facturita;
-/
+
 /*
 var sumita1 = 0
 var sumita2 = 0
@@ -141,9 +141,7 @@ $(document).ready(function () {
 
  $(document).ready(function () {
    $('.datepicker').datepicker({
-       format: 'yyyy-mm-dd',
-       minDate: 0,
-       maxDate: 2
+       format: 'yyyy-mm-dd'
        
    });
 });
@@ -336,7 +334,7 @@ $(document).ready(function () {
                     filita();
                     break;
 
-                case rcantidad > rdispon:
+                case /*rcantidad > rdispon*/parseInt(document.getElementById("RCantidad").value) > parseInt( document.getElementById("Rdispon").value):
                     var toastHTML = '<span>Escriba una cantidad disponible</span><button class="btn-flat toast-action">Deshacer</button>';
                     M.toast({ html: toastHTML });
                     //alert("Esciba una cantidad menor");
@@ -841,7 +839,7 @@ function sumas2() {
         }
     }
 }
-*//
+*/
 /*
 function graph2() {
 

@@ -41,7 +41,7 @@ function cargarFacto() {
 xhr8.onload = function () {
     if (xhr8.status === 200) {
         facto = JSON.parse(xhr8.responseText);
-        //console.log(facturita);
+        //console.log(facto);
         sumas2();
         graph2();
     }
@@ -206,6 +206,7 @@ function paso22() {
 }
 function paso33() {
     graph();
+    graph2();
 }
 
 paso11();
