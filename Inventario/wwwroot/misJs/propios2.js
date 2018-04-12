@@ -1,6 +1,10 @@
 ﻿'use strict';
 
 var xhr6 = new XMLHttpRequest();
+var xhr7 = new XMLHttpRequest();
+//
+var productos2;
+var cantProd;
 //
 var sumaY = 0;
 var sumaP = 0
@@ -16,13 +20,34 @@ function cargarDet() {
     xhr6.responseType = 'text';
     xhr6.send();
 }
-
+//
+function cargarProductos2() {
+    xhr.open('GET', 'http://localhost:5913/Producto/ObtenerProducto', 'true');
+    xhr.responseType = 'text';
+    xhr.send();
+}
+//
 xhr6.onload = function () {
     if (xhr6.status === 200) {
         details = JSON.parse(xhr6.responseText);
         //console.log(details);
         paso22();
     }
+}
+//
+xhr7.onload = function () {
+    if (xhr7.status === 200) {
+        productos2 = JSON.parse(xhr7.responseText);
+        console.log(productos2);
+        cantProd = productos2.length;
+        $('#cantPro').text(cantProd);
+    }
+}
+//
+function cargarProductos() {
+    xhr.open('GET', 'http://localhost:5913/Producto/ObtenerProducto', 'true');
+    xhr.responseType = 'text';
+    xhr.send();
 }
 //
 function sumas() {
@@ -111,4 +136,4 @@ function paso33() {
 
 paso11();
 cargarDet();
-
+cargarProductos2();

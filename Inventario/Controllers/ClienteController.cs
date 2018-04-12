@@ -6,6 +6,7 @@ using Inventario.Models;
 using Inventario.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,10 +19,20 @@ namespace Inventario.Controllers
 
         private readonly AppDbContext _appDbContext;
 
-        public ClienteController(AppDbContext context, IClienteRepository clienteRepository)
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+
+
+        public ClienteController(AppDbContext context, IClienteRepository clienteRepository, SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _appDbContext = context;
             _clienteRepository = clienteRepository;
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         /*
@@ -31,8 +42,14 @@ namespace Inventario.Controllers
             
         }*/
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _roleManager.CreateAsync(new IdentityRole("Admin"));
+                var user = await _userManager.GetUserAsync(HttpContext.User);
+                await _userManager.AddToRoleAsync(user, "Admin");
+            }
             return View();
         }
 

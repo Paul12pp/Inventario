@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Inventario.Models;
 using Inventario.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventario.Controllers

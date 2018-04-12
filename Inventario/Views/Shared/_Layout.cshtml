@@ -62,8 +62,6 @@
             <li><a asp-controller="Producto" asp-action="List"><i class="material-icons">local_offer</i>Productos</a></li>
             <li><a asp-controller="Factura" asp-action="Create"><i class="material-icons">shopping_cart</i>Facturacion</a></li>
             <li><a asp-controller="Factura" asp-action="List"><i class="material-icons">timeline</i>Reportes ventas</a></li>
-            <li><a class="nounderline" href="#about"><i class="material-icons">build</i>Mantenimiento</a></li>
-            <li><a class="nounderline" href="#about"><i class="material-icons">settings</i>Configuracion</a></li>
             @if (SignInManager.IsSignedIn(User))
             {
                 <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
