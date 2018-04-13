@@ -25,7 +25,7 @@ namespace Inventario.Controllers
             _appDbContext = context;
             _productoRepository = productoRepository;
         }
-        
+
         public IActionResult Index()
         {
             ViewBag.Title = "Producto overview";

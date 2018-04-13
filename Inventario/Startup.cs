@@ -32,14 +32,21 @@ namespace Inventario
               options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<IdentityUser, IdentityRole>().
-                AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+                AddEntityFrameworkStores<AppDbContext>();
 
             services.AddTransient<IClienteRepository, ClienteRepository>();
             services.AddTransient<IProveedorRepository, ProveedorRepository>();
             services.AddScoped<IProductoRepository, ProductoRepository>();
             services.AddTransient<IFacturaRepository, FacturaRepository>();
             services.AddTransient<IDetalleRepository, DetalleRepository>();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                    .AddCookie(options => {
+                        options.LoginPath = "/Account/Login/";
+                        
+                    });
            
+            services.AddNodeServices();
             services.AddMvc();
         }
 

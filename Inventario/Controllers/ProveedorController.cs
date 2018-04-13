@@ -40,13 +40,11 @@ namespace Inventario.Controllers
         /// Metodo get
         /// </summary>
         /// <returns></returns>
-        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult Create(Proveedor proveedor)
         {
@@ -69,7 +67,6 @@ namespace Inventario.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -86,7 +83,6 @@ namespace Inventario.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int id, [Bind("ProveedorId,Name,LastName,IdentificationCard,PhoneNumber,Address,Email")] Proveedor proveedor)
         {
             if (id != proveedor.ProveedorId)
@@ -123,7 +119,6 @@ namespace Inventario.Controllers
         /// <param name="id"></param>
         /// <param name="saveChangesError"></param>
         /// <returns></returns>
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
@@ -148,7 +143,7 @@ namespace Inventario.Controllers
 
             return View(proveedores);
         }
-        [Authorize(Roles = "Admin")]
+
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
