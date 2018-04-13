@@ -19,7 +19,7 @@ var xhr5 = new XMLHttpRequest();
 var cantProd;
 var cantVent;
 var cantCl;
-var cantProv;
+var canProv;
 var facturita;
 
 /*
@@ -68,8 +68,8 @@ xhr4.onload = function () {
     if (xhr4.status === 200) {
         proveedores = JSON.parse(xhr4.responseText);
         console.log(proveedores);
-        cantProv = proveedores.length;
-        $('#cantProv').text(cantProv);
+        canProv = proveedores.length;
+        $('#cantProv').text(canProv);
     }
 }
 
@@ -87,7 +87,6 @@ xhr3.onload = function () {
             productos = JSON.parse(xhr.responseText);
                 console.log(productos);
                 cantProd = productos.length;
-                $('#cantPro').text(cantProd);
             }
             for (var i = 0; i < productos.length; i++) {
                 if (productos[i].name === opcion_seleccionada) {
@@ -132,7 +131,6 @@ xhr3.onload = function () {
 
 $(document).ready(function () {
     $('select').formSelect();
-
 });
 
 $(document).ready(function () {
@@ -141,8 +139,14 @@ $(document).ready(function () {
 
  $(document).ready(function () {
    $('.datepicker').datepicker({
+<<<<<<< HEAD
        format: 'yyyy-mm-dd'
        
+=======
+         // Creates a dropdown to control month
+         // Creates a dropdown of 15 years to control year
+        format: 'yyyy-mm-dd'
+>>>>>>> parent of edc0760... Cambios
    });
 });
 
