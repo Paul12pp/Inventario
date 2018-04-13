@@ -334,7 +334,7 @@ $(document).ready(function () {
                     filita();
                     break;
 
-                case /*rcantidad > rdispon*/parseInt(document.getElementById("RCantidad").value) > parseInt( document.getElementById("Rdispon").value):
+                case document.getElementById("RCantidad").value >  document.getElementById("Rdispon").value:
                     var toastHTML = '<span>Escriba una cantidad disponible</span><button class="btn-flat toast-action">Deshacer</button>';
                     M.toast({ html: toastHTML });
                     //alert("Esciba una cantidad menor");
