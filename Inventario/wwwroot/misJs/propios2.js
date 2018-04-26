@@ -1,14 +1,13 @@
 ﻿'use strict';
 
 var xhr6 = new XMLHttpRequest();
-<<<<<<< HEAD
+
 var xhr7 = new XMLHttpRequest();
 var xhr8 = new XMLHttpRequest();
 //
 var productos2;
 var cantProd;
-=======
->>>>>>> parent of edc0760... Cambios
+
 //
 var sumaY = 0;
 var sumaP = 0
@@ -27,7 +26,7 @@ function cargarDet() {
     xhr6.responseType = 'text';
     xhr6.send();
 }
-<<<<<<< HEAD
+
 //
 function cargarProductos2() {
     xhr.open('GET', 'http://localhost:5913/Producto/ObtenerProducto', 'true');
@@ -45,15 +44,13 @@ function cargarFacto() {
 xhr8.onload = function () {
     if (xhr8.status === 200) {
         facto = JSON.parse(xhr8.responseText);
-        //console.log(facto);
+        //console.log(facturita);
         sumas2();
         graph2();
     }
 }
 //
-=======
 
->>>>>>> parent of edc0760... Cambios
 xhr6.onload = function () {
     if (xhr6.status === 200) {
         details = JSON.parse(xhr6.responseText);
@@ -198,14 +195,10 @@ function paso22() {
 }
 function paso33() {
     graph();
-    graph2();
 }
 
 paso11();
 cargarDet();
-<<<<<<< HEAD
+
 cargarProductos2();
 cargarFacto();
-=======
-
->>>>>>> parent of edc0760... Cambios

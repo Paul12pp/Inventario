@@ -83,6 +83,7 @@ namespace Inventario.Controllers
         /// <param name="id"></param>
         /// <param name="saveChangesError"></param>
         /// <returns></returns>
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             ViewBag.ProveedorId = _appDbContext.Proveedores.ToList();
@@ -110,6 +111,7 @@ namespace Inventario.Controllers
             return View(productos);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

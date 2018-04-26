@@ -119,6 +119,7 @@ namespace Inventario.Controllers
         /// <param name="id"></param>
         /// <param name="saveChangesError"></param>
         /// <returns></returns>
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
@@ -143,7 +144,7 @@ namespace Inventario.Controllers
 
             return View(proveedores);
         }
-
+        [Authorize(Roles ="Admin")]
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {

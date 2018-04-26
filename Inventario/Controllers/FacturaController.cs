@@ -38,8 +38,18 @@ namespace Inventario.Controllers
             */
             var lista = _appDbContext.Facturas.Where(x => x.FacturaId == id).Include(x => x.Detalles).ToList();
             var pp = _appDbContext.Detalles.Where(x => x.FacturaId == id).Include(x => x.Factura).Include(z=>z.Producto).ToList();
-            return View(pp);
+            return View(lista);
         }
+
+        public IActionResult ultima()
+        {
+            var lista = _appDbContext.Facturas.OrderByDescending(x => x.FacturaId).Include(x => x.Cliente).ToList();
+            var ultimas = _appDbContext.Facturas.OrderByDescending(x => x.FacturaId).ToList().Last();
+            var pp = _facturaRepository.GetAllFacturas().Where(x=>x.ClienteId==2).TakeLast(3).ToList();
+            Console.WriteLine(pp);
+            return View( pp);
+        }
+
 
         public IActionResult Create()
         {
@@ -94,7 +104,7 @@ namespace Inventario.Controllers
 
             return View(pp);
         }
-
+        
         
 
 

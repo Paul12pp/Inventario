@@ -14,11 +14,14 @@ namespace Inventario.Controllers
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager,
+            RoleManager<IdentityRole> roleManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public IActionResult Login()
@@ -73,6 +76,7 @@ namespace Inventario.Controllers
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, "vendedor");
                     return RedirectToAction("Index", "Home");
                 }
             }
@@ -86,12 +90,8 @@ namespace Inventario.Controllers
             return RedirectToAction("Login", "Account");
         }
 
-        public IActionResult test()
-        {
-            return View();
-        }
-
-        public IActionResult test2()
+        [HttpGet]
+        public IActionResult AccessDenied()
         {
             return View();
         }
